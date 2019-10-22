@@ -1,23 +1,31 @@
 package com.example.course.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "tab_user")
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+
+	@Id //definindo a chave primaria
+	@GeneratedValue(strategy = GenerationType.IDENTITY) // atribuindo auto incremento a chave primaria
 	private Long id;
 	private String nome;
 	private String email;
 	private String phone;
 	private String password;
+
+	@OneToMany(mappedBy = "client") //associação de chaves um para muitos
+	private List<Order> orders = new ArrayList<>();
 
 	public User() {
 
@@ -72,6 +80,10 @@ public class User implements Serializable {
 		this.password = password;
 	}
 
+	public List<Order> getOrders() {
+		return orders;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -96,6 +108,5 @@ public class User implements Serializable {
 			return false;
 		return true;
 	}
-	
-	
+
 }

@@ -11,17 +11,21 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
-@Table(name = "tab_order") //Nome a ser dado a tabela no BD ( evitar conflito com palavras reservadas)
+@Table(name = "tab_order") // Nome a ser dado a tabela no BD ( evitar conflito com palavras reservadas)
 public class Order implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id // definindo chave primaria
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // atribuindo um auto incremento
 	private Long id;
+
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
 	private Instant moment;
-	
-	@ManyToOne //associação de chaves muito para um
+
+	@ManyToOne // associação de chaves muito para um
 	@JoinColumn(name = "client_id") // definindo chave estrangeira do client
 	private User client;
 

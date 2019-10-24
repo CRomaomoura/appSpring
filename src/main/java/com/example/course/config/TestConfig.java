@@ -61,7 +61,17 @@ public class TestConfig implements CommandLineRunner {
 		Product p2 = new Product(null,"Smart TV", "Nulla eu imperdiet purus. Maecenas ante.", 2190.0, "");
 		Product p3 = new Product(null,"Mc book", "Nulla eu imperdiet purus.", 2190.0, "");
 		Product p4 = new Product(null,"Notebook", "Nulla eu imperdiet purus.", 2190.0, "");
-		Product p5 = new Product(null,"Home teachers", "Maecenas ante.", 2190.0, "");
+		Product p5 = new Product(null,"Sherlok homes and darkness misterios", "Maecenas ante. bla bla bla...", 2190.0, "");
+		
+		productRepository.saveAll(Arrays.asList(p1,p2,p3,p4,p5));
+		
+		p1.getCategories().add(cat2);
+		p2.getCategories().add(cat1);
+		p3.getCategories().add(cat1);
+		p3.getCategories().add(cat3);
+		p4.getCategories().add(cat1);
+		p4.getCategories().add(cat3);
+		p5.getCategories().add(cat2);
 		
 		productRepository.saveAll(Arrays.asList(p1,p2,p3,p4,p5));
 	}

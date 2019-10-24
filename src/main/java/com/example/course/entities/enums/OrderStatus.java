@@ -1,3 +1,5 @@
+//Este projeto é baseado no curso do Nelio alves na plataforma Udemy. 
+
 package com.example.course.entities.enums;
 
 public enum OrderStatus {
